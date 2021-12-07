@@ -1,6 +1,6 @@
 PYTHON_BINARY := python3
 VIRTUAL_BIN := venv/bin
-PROJECT_NAME := project_name
+PROJECT_NAME := proxlist
 TEST_DIR := test
 
 ## help - Display help about make targets for this Makefile

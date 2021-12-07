@@ -29,8 +29,7 @@ jobs:
           --wheel
           --outdir dist/
           .
-      # Uncomment for your project
-      # - name: Publish to PyPI
-      #   uses: pypa/gh-action-pypi-publish@master
-      #   with:
-      #     password: ${{ secrets.PYPI_API_TOKEN }}
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
