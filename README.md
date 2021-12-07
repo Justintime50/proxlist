@@ -40,7 +40,7 @@ proxy = proxlist.random_proxy()
 
 proxies = {
     'http': f'http://{proxy}',
-    'https': f'http://{proxy}',
+    'https': f'https://{proxy}',
 }
 
 response = requests.get('https://google.com', proxies=proxies)
