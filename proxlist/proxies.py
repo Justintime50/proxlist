@@ -29,6 +29,7 @@ def random_proxy() -> str:
 
 
 def list_proxies() -> List[str]:
+    
     return PROXY_LIST
 
 
@@ -38,4 +39,5 @@ def proxy_dict() -> Dict[str, str]:
         'http': f'http://{proxy}',
         'https': f'https://{proxy}',
     }
+    
     return proxy_dict
