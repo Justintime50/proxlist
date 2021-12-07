@@ -33,15 +33,12 @@ make install
 import proxlist
 import requests
 
-proxy = proxlist.random_proxy()
+proxies = proxlist.proxy_dict()
 
-# Alternatively, you could get the entire list of configured proxies
+# Alternatively, you could get a single proxy
+# proxy = proxlist.random_proxy()
+# or a list of configured proxies
 # proxies = proxlist.list_proxies()
-
-proxies = {
-    'http': f'http://{proxy}',
-    'https': f'http://{proxy}',
-}
 
 response = requests.get('https://google.com', proxies=proxies)
 print(response.text)
