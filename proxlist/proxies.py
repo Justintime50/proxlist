@@ -32,7 +32,7 @@ def list_proxies() -> List[str]:
     return PROXY_LIST
 
 
-def proxy_dict() -> dict:
+def proxy_dict() -> Dict[str, str]:
     proxy = random_proxy()
     return {
         'http': f'http://{proxy}',
