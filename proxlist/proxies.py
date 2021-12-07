@@ -34,7 +34,8 @@ def list_proxies() -> List[str]:
 
 def proxy_dict() -> Dict[str, str]:
     proxy = random_proxy()
-    return {
+    proxy_dict = {
         'http': f'http://{proxy}',
         'https': f'https://{proxy}',
     }
+    return proxy_dict
