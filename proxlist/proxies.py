@@ -34,6 +34,12 @@ def list_proxies() -> List[str]:
 
 
 def proxy_dict() -> Dict[str, str]:
+    """
+    Returns a proxy dictionary, perfect for passing into the requests `proxies` parameter
+    
+    :return: A dictionary of proxy details
+    :rtype: dict
+    """
     proxy = random_proxy()
     proxy_dict = {
         'http': f'http://{proxy}',
