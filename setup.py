@@ -3,6 +3,10 @@ import setuptools
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
+REQUIREMENTS = [
+    'requests == 2.*',
+]
+
 DEV_REQUIREMENTS = [
     'black',
     'coveralls == 3.*',
@@ -11,6 +15,7 @@ DEV_REQUIREMENTS = [
     'mypy',
     'pytest == 6.*',
     'pytest-cov == 2.*',
+    'types-requests',
 ]
 
 setuptools.setup(
@@ -29,6 +34,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    install_requires=REQUIREMENTS,
     extras_require={
         'dev': DEV_REQUIREMENTS,
     },
