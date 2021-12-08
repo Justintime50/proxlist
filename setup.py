@@ -28,7 +28,12 @@ setuptools.setup(
     author='Justintime50',
     license='MIT',
     packages=setuptools.find_packages(),
-    package_data={'proxlist': ['py.typed']},
+    package_data={
+        'proxlist': [
+            'py.typed',
+            'data/proxy_list.txt',
+        ],
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
