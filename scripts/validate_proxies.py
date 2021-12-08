@@ -17,7 +17,7 @@ def main():
     """Print to console the proxies that pass the test.
 
     If proxies appear in the list the number of times of the range below, they are consistently working.
-    You can then discard any that didn't appear X number of times
+    You can then discard any that didn't appear X number of times.
     """
     proxy_list = proxies_to_validate()
     for proxy in proxy_list:

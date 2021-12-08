@@ -20,7 +20,7 @@ DEV_REQUIREMENTS = [
 
 setuptools.setup(
     name='proxlist',
-    version='0.1.0',
+    version='0.1.1',
     description='Your project description here',
     long_description=long_description,
     long_description_content_type="text/markdown",
