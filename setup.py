@@ -5,6 +5,7 @@ with open('README.md', 'r') as fh:
 
 REQUIREMENTS = [
     'requests == 2.*',
+    'beautifulsoup4 == 4.*',
 ]
 
 DEV_REQUIREMENTS = [
@@ -20,7 +21,7 @@ DEV_REQUIREMENTS = [
 
 setuptools.setup(
     name='proxlist',
-    version='0.1.1',
+    version='0.2.0',
     description='Your project description here',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -28,12 +29,7 @@ setuptools.setup(
     author='Justintime50',
     license='MIT',
     packages=setuptools.find_packages(),
-    package_data={
-        'proxlist': [
-            'py.typed',
-            'data/proxy_list.txt',
-        ],
-    },
+    package_data={'proxlist': ['py.typed']},
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

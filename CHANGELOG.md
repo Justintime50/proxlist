@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.2.0 (2021-12-07)
+
+* Removes proxy list from repo entirely
+* Retrieves an updated proxy list each time you request a proxy
+* Tests that the proxy works prior to returning it to you
+
 ## v0.1.1 (2021-12-07)
 
 * Overhauls the proxy list with different proxies (tested more thoroughly) as well as moves the list from a hardcoded constant to a text file

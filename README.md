@@ -13,13 +13,11 @@ Retrieve proxy servers.
 
 </div>
 
-Finding and storing a list of proxies can be taxing. Simply import `proxlist` and have it give you a rotating random proxy to run your requests through.
-
-The list of currently configured proxies have `SSL` support, were tested to be able to accept connections (3 independant tests to ensure consistency), and were able to serve requests within 15 seconds (your mileage may vary based on the content you are sending/receiving through the proxy and where you are located in the world, if you receive timeouts, simply bump the timeout up or try again). This may change over time as proxies change and the list gets updated.
+Finding and storing a list of proxies can be taxing - especially ones that are free and may not work only minutes from now. `proxlist` will validate the proxy and return a rotating random proxy to you so you don't need to keep a list of proxies or ensure it's contents are still valid.
 
 Proxies are returned in the form of strings (eg: `ip:port`).
 
-These proxies come from all over the world and may not be performant, this package is intended for testing purposes and I make no guarantee about where the data sent through these proxies goes - this package should not (yet) be considered for production applications.
+These proxies come from all over the world and may not be performant for a production application. This package (for now) is intended for testing purposes and I make no guarantee about where the data sent through these proxies goes or how it's handled. The list of proxies rotates rapidly and is free and open source.
 
 ## Install
 
@@ -47,7 +45,9 @@ proxies = {
     'https': f'http://{proxy}',
 }
 
-response = requests.get('https://google.com', proxies=proxies)
+# Depending on the proxy and you location in the world, you may need to adjust the timeout
+# to provide the proxy enough time to route your request.
+response = requests.get('https://google.com', proxies=proxies, timeout=15)
 print(response.text)
 ```
 
