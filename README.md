@@ -17,7 +17,7 @@ Finding and storing a list of proxies can be taxing - especially ones that are f
 
 Proxies are returned in the form of strings (eg: `ip:port`).
 
-These proxies come from all over the world and may not be performant for a production application. This package (for now) is intended for testing purposes and I make no guarantee about where the data sent through these proxies goes or how it's handled. The list of proxies rotates rapidly and is free and open source.
+These proxies come from all over the world and may not be performant for a production application. For a production application, you should really use a paid proxy service or a self-hosted solution. This package (for now) is intended for testing purposes and I make no guarantee about where the data sent through these proxies goes or how it's handled. The list of proxies rotates rapidly and is free and open source.
 
 ## Install
 
@@ -49,7 +49,8 @@ proxies = {
 }
 
 # Depending on the proxy and you location in the world, you may need to adjust the timeout
-# to provide the proxy enough time to route your request.
+# to provide the proxy enough time to route your request. Additionally, some of these proxies
+# may be unstable - adding retry logic is highly recommended.
 response = requests.get('https://google.com', proxies=proxies, timeout=10)
 print(response.text)
 ```
