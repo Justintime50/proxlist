@@ -11,6 +11,8 @@ def random_proxy() -> str:
     proxy_list = _get_proxies()
 
     for proxy in proxy_list:
+        # TODO: In the future, we could maybe implement threading here to quickly validate every proxy
+        # and break on the first success, we'll need to ensure we handle it properly.
         if _validate_proxy(proxy):
             valid_proxy_exists = True
             random_proxy = random.choice(proxy_list)
@@ -69,8 +71,7 @@ def _validate_proxy(proxy: str) -> bool:
     }
 
     try:
-        # A `3` second timeout here is pretty generous, but it's what we are going with for now
-        with requests.get(url, proxies=proxies, headers=headers, timeout=3, stream=True) as r:
+        with requests.get(url, proxies=proxies, headers=headers, timeout=1, stream=True) as r:
             if r.raw.connection.sock:
                 if r.raw.connection.sock.getpeername()[0] == proxies['http'].split(':')[1][2:]:
                     proxy_works = True

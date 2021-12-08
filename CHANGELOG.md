@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.2.1 (2021-12-08)
+
+* Have a stricter validation timeout of 1 second instead of 3 seconds to improve performance and accuracy based on your connection and location
+
 ## v0.2.0 (2021-12-07)
 
 * Removes proxy list from repo entirely
