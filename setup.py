@@ -20,7 +20,7 @@ DEV_REQUIREMENTS = [
 
 setuptools.setup(
     name='proxlist',
-    version='0.1.0',
+    version='0.1.1',
     description='Your project description here',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -28,7 +28,12 @@ setuptools.setup(
     author='Justintime50',
     license='MIT',
     packages=setuptools.find_packages(),
-    package_data={'proxlist': ['py.typed']},
+    package_data={
+        'proxlist': [
+            'py.typed',
+            'data/proxy_list.txt',
+        ],
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
