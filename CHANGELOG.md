@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.3.0 (2021-12-08)
+
+* Adds `country` parameter to filter proxies by their two digit ISO country codes
+* Adds `google_verified` parameter to filter proxies by if they are google verified or not
+* Adds altered timeout logic (shorter timeouts for larger proxy pools to get to a working proxy faster, longer timeouts when the proxy pool is smaller to offset the difference and get a working proxy back to you)
+
 ## v0.2.1 (2021-12-08)
 
 * Have a stricter validation timeout of 1 second instead of 3 seconds to improve performance and accuracy based on your connection and location

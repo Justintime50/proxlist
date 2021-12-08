@@ -21,8 +21,8 @@ DEV_REQUIREMENTS = [
 
 setuptools.setup(
     name='proxlist',
-    version='0.2.1',
-    description='Your project description here',
+    version='0.3.0',
+    description='Retrieve proxy servers.',
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='http://github.com/Justintime50/proxlist',

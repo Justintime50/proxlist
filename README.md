@@ -37,7 +37,10 @@ import requests
 
 proxy = proxlist.random_proxy()
 
-# Alternatively, you could get the entire list of configured proxies
+# You can also filter proxies by country or google_verified
+# proxies = proxlist.random_proxy(country='US', google_verified=True)
+
+# Alternatively, you could get the entire list of current proxies (and could optionally filter them like above)
 # proxies = proxlist.list_proxies()
 
 proxies = {
@@ -47,7 +50,7 @@ proxies = {
 
 # Depending on the proxy and you location in the world, you may need to adjust the timeout
 # to provide the proxy enough time to route your request.
-response = requests.get('https://google.com', proxies=proxies, timeout=15)
+response = requests.get('https://google.com', proxies=proxies, timeout=10)
 print(response.text)
 ```
 
