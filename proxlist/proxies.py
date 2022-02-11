@@ -80,7 +80,7 @@ def _get_proxies(country: Optional[str] = None, google_verified: bool = False) -
     return proxy_list
 
 
-def _validate_proxy(proxy: str, timeout: int) -> bool:
+def _validate_proxy(proxy: str, timeout: float) -> bool:
     """Validates that a proxy is working (these free proxies can come and go within minutes),
     test them before returning to the user.
     """
