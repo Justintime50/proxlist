@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.4.0 (2022-02-10)
+
+* Adds debug logging
+* Fixes a bug that would choose an incorrect random proxy after finding a verified entry, this fix greatly increases the reliability of this package
+* Other small improvements to increase performance
+
 ## v0.3.0 (2021-12-08)
 
 * Adds `country` parameter to filter proxies by their two digit ISO country codes

@@ -3,11 +3,12 @@ from unittest.mock import patch
 import pytest
 
 import proxlist
+from proxlist.proxies import _setup_logger
 
 
 def test_random_proxy():
     """Tests that we can retrieve a random proxy."""
-    for i in range(3):
+    for _ in range(3):
         try:
             random_proxy = proxlist.random_proxy()
         except Exception:
@@ -37,7 +38,7 @@ def test_random_proxy_filter_country():
 
 def test_random_proxy_filter_google_verified():
     """Tests that we can retrieve a random proxy when filtering for a google verified proxy."""
-    for i in range(3):
+    for _ in range(3):
         try:
             random_proxy = proxlist.random_proxy(google_verified=True)
         except Exception:
@@ -74,3 +75,10 @@ def test_list_proxies():
 
     assert type(proxy_list) == list
     assert len(proxy_list) > 10
+
+
+@patch('woodchips.Logger')
+def test_setup_logger(mock_logger):
+    _setup_logger()
+
+    mock_logger.assert_called_once()

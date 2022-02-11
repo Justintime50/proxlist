@@ -4,8 +4,9 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 REQUIREMENTS = [
-    'requests == 2.*',
     'beautifulsoup4 == 4.*',
+    'requests == 2.*',
+    'woodchips == 0.2.*',
 ]
 
 DEV_REQUIREMENTS = [
@@ -21,7 +22,7 @@ DEV_REQUIREMENTS = [
 
 setuptools.setup(
     name='proxlist',
-    version='0.3.0',
+    version='0.4.0',
     description='Retrieve proxy servers.',
     long_description=long_description,
     long_description_content_type="text/markdown",
