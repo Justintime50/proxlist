@@ -35,23 +35,27 @@ make install
 import proxlist
 import requests
 
+# Get a random proxy
 proxy = proxlist.random_proxy()
 
 # You can also filter proxies by country or google_verified
-# proxies = proxlist.random_proxy(country='US', google_verified=True)
+proxies = proxlist.random_proxy(country='US', google_verified=True)
 
 # Alternatively, you could get the entire list of current proxies (and could optionally filter them like above)
-# proxies = proxlist.list_proxies()
+proxies = proxlist.list_proxies()
 
-proxies = {
-    'http': f'http://{proxy}',
-    'https': f'http://{proxy}',
-}
-
-# Depending on the proxy and you location in the world, you may need to adjust the timeout
+# Depending on the proxy and your location in the world, you may need to adjust the timeout
 # to provide the proxy enough time to route your request. Additionally, some of these proxies
 # may be unstable - adding retry logic is highly recommended.
-response = requests.get('https://google.com', proxies=proxies, timeout=10)
+response = requests.get(
+    'https://google.com', 
+    proxies={
+        'http': f'http://{proxy}',
+        'https': f'http://{proxy}',
+    }, 
+    timeout=10,
+)
+
 print(response.text)
 ```
 
