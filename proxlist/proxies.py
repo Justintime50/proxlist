@@ -1,3 +1,4 @@
+from concurrent.futures import ALL_COMPLETED, ThreadPoolExecutor, wait
 from typing import List, Optional
 
 import requests
@@ -5,45 +6,50 @@ import woodchips
 from bs4 import BeautifulSoup  # type: ignore
 
 LOGGER_NAME = 'proxlist'
+NUM_THREADS = 20
 
 
-def random_proxy(country: Optional[str] = None, google_verified: bool = False) -> str:
+def random_proxy(country: Optional[str] = None, google_verified: bool = False) -> Optional[str]:
     """Returns a 'random' proxy (ip:port) from the currently configured list.
 
-    This is accomplished by testing each proxy individually until we find one that works.
+    This is accomplished by testing each proxy concurrently until we find one that works.
     """
     _setup_logger()
     logger = woodchips.get(LOGGER_NAME)
 
-    valid_proxy_exists = False
-    validate_proxy_timeout = (
-        3 if country or google_verified else 0.5
-    )  # Set a longer timeout if our proxy pool is smaller
-    proxy_list = _get_proxies(country, google_verified)
+    validate_proxy_timeout = 2 if country or google_verified else 1
 
+    proxy_list = get_proxies(country, google_verified)
     logger.debug(proxy_list)
 
+    thread_list = []
+    pool = ThreadPoolExecutor(NUM_THREADS)
+
     for proxy in proxy_list:
-        # TODO: In the future, we could maybe implement threading here to quickly validate every proxy
-        # and break on the first success, we'll need to ensure we handle it properly.
-        if _validate_proxy(proxy, validate_proxy_timeout):
-            valid_proxy_exists = True
-            break
+        proxy_thread = pool.submit(
+            validate_proxy,
+            proxy=proxy,
+            timeout=validate_proxy_timeout,
+        )
+        thread_list.append(proxy_thread)
 
-    if valid_proxy_exists is False:
+    wait(thread_list, return_when=ALL_COMPLETED)
+    valid_proxy_list = [proxy.result() for proxy in thread_list if proxy.result()]
+
+    if valid_proxy_list:
+        return valid_proxy_list[0]
+    else:
         raise Exception('No working proxies were found at this time, please try again later.')
-
-    return proxy
 
 
 def list_proxies(country: Optional[str] = None, google_verified: bool = False) -> List[str]:
     """Lists all proxies from the currently configured list."""
-    proxy_list = _get_proxies(country, google_verified)
+    proxy_list = get_proxies(country, google_verified)
 
     return proxy_list
 
 
-def _get_proxies(country: Optional[str] = None, google_verified: bool = False) -> List[str]:
+def get_proxies(country: Optional[str] = None, google_verified: bool = False) -> List[str]:
     """Gets a list of proxies from https://www.sslproxies.org by scraping the proxy table."""
     proxy_list = []
 
@@ -65,7 +71,9 @@ def _get_proxies(country: Optional[str] = None, google_verified: bool = False) -
         proxy = f'{ip_address}:{port}'
 
         # If the user specified filters, respect them here
-        if (country is not None and country_code == country) and (google_verified and is_google_verified):
+        if (country is not None and country_code == country) and (
+            google_verified and is_google_verified
+        ):  # pragma: no cover - cannot reliably get country + google-verified filtered results
             proxy_list.append(proxy)
         elif (country is not None and country_code == country) and (not google_verified):
             proxy_list.append(proxy)
@@ -80,13 +88,11 @@ def _get_proxies(country: Optional[str] = None, google_verified: bool = False) -
     return proxy_list
 
 
-def _validate_proxy(proxy: str, timeout: float) -> bool:
+def validate_proxy(proxy: str, timeout: float) -> Optional[str]:
     """Validates that a proxy is working (these free proxies can come and go within minutes),
     test them before returning to the user.
     """
     logger = woodchips.get(LOGGER_NAME)
-
-    proxy_works = False
 
     url = 'https://google.com'
     headers = {
@@ -101,19 +107,19 @@ def _validate_proxy(proxy: str, timeout: float) -> bool:
         with requests.get(url, proxies=proxies, headers=headers, timeout=timeout, stream=True) as response:
             if response.raw.connection.sock:
                 if response.raw.connection.sock.getpeername()[0] == proxies['http'].split(':')[1][2:]:
-                    proxy_works = True
+                    valid_proxy = proxy
                     logger.debug(f'Found valid proxy: {proxy}')
     except Exception:
         # Couldn't connect to proxy, discard
+        valid_proxy = None
         logger.debug(f'Couldn\'t connect to proxy: {proxy}')
-        pass
 
-    return proxy_works
+    return valid_proxy
 
 
 def _setup_logger():
     """Setup a `woodchips` logger instance."""
-    logging_level = 'ERROR'  # Intentionally hide all loggers. During development, set to DEBUG
+    logging_level = 'ERROR'  # Intentionally hide all loggers. During development, set to `DEBUG`
 
     logger = woodchips.Logger(
         name=LOGGER_NAME,
@@ -123,4 +129,4 @@ def _setup_logger():
 
 
 if __name__ == '__main__':
-    random_proxy()
+    print(random_proxy())

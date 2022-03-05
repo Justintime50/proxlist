@@ -1,6 +1,8 @@
-from proxlist.proxies import list_proxies, random_proxy
+from proxlist.proxies import get_proxies, list_proxies, random_proxy, validate_proxy
 
 __all__ = [
-    'random_proxy',
+    'get_proxies',
     'list_proxies',
+    'random_proxy',
+    'validate_proxy',
 ]

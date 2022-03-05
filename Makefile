@@ -14,7 +14,7 @@ build:
 
 ## coverage - Test the project and generate an HTML coverage report
 coverage:
-	$(VIRTUAL_BIN)/pytest --cov=$(PROJECT_NAME) --cov-branch --cov-report=html --cov-report=term-missing
+	$(VIRTUAL_BIN)/pytest --durations=0 --cov=$(PROJECT_NAME) --cov-branch --cov-report=html --cov-report=term-missing
 
 ## clean - Remove the virtual environment and clear out .pyc files
 clean:
@@ -61,6 +61,6 @@ mypy:
 
 ## test - Test the project
 test:
-	$(VIRTUAL_BIN)/pytest
+	$(VIRTUAL_BIN)/pytest --durations=0
 
 .PHONY: help build coverage clean black black-check format format-check install isort isort-check lint mypy test

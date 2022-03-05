@@ -1,2 +1,5 @@
-[run]
-omit = proxlist/validate_proxies.py
+[report]
+exclude_lines =
+    pragma: no cover
+    if __name__ == '__main__':
+    if response.raw.connection.sock:

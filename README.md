@@ -13,11 +13,11 @@ Retrieve proxy servers.
 
 </div>
 
-Finding and storing a list of proxies can be taxing - especially ones that are free and may not work only minutes from now. `proxlist` will validate the proxy and return a rotating random proxy to you so you don't need to keep a list of proxies or ensure it's contents are still valid.
+Finding and storing a list of proxies can be taxing - especially ones that are free and actually work. `proxlist` will validate and return a rotating random proxy to you so you don't need to keep a list of proxies or ensure the list is still valid.
 
 Proxies are returned in the form of strings (eg: `ip:port`).
 
-These proxies come from all over the world and may not be performant for a production application. For a production application, you should really use a paid proxy service or a self-hosted solution. This package (for now) is intended for testing purposes and I make no guarantee about where the data sent through these proxies goes or how it's handled. The list of proxies rotates rapidly and is free and open source.
+These proxies come from all over the world and may not be performant for a production application. For a production application, you should really use a paid proxy service or a self-hosted solution. This package is intended for testing purposes and there are no guarantees about where the data sent through these proxies goes or how it's handled. The list of proxies rotates rapidly and is free and open source - your mileage may vary.
 
 ## Install
 
@@ -46,13 +46,14 @@ proxies = proxlist.list_proxies()
 
 # Depending on the proxy and your location in the world, you may need to adjust the timeout
 # to provide the proxy enough time to route your request. Additionally, some of these proxies
-# may be unstable - adding retry logic is highly recommended.
+# may be unstable - adding retry logic is highly recommended. Caching a working proxy is also
+# a good idea with a fallback of retrying if the cached proxy no longer works or times out.
 response = requests.get(
-    'https://google.com', 
+    'https://google.com',
     proxies={
         'http': f'http://{proxy}',
         'https': f'http://{proxy}',
-    }, 
+    },
     timeout=10,
 )
 
