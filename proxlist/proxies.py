@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup  # type: ignore
 
 LOGGER_NAME = 'proxlist'
 NUM_THREADS = 20
+LOG_LEVEL = 'NOTSET'  # Intentionally hide all loggers. During development, set to `DEBUG`
 
 
 def random_proxy(country: Optional[str] = None, google_verified: bool = False) -> Optional[str]:
@@ -119,7 +120,7 @@ def validate_proxy(proxy: str, timeout: float) -> Optional[str]:
 
 def _setup_logger():
     """Setup a `woodchips` logger instance."""
-    logging_level = 'ERROR'  # Intentionally hide all loggers. During development, set to `DEBUG`
+    logging_level = LOG_LEVEL
 
     logger = woodchips.Logger(
         name=LOGGER_NAME,

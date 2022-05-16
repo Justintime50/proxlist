@@ -31,8 +31,17 @@ setuptools.setup(
     url='http://github.com/Justintime50/proxlist',
     author='Justintime50',
     license='MIT',
-    packages=setuptools.find_packages(),
-    package_data={'proxlist': ['py.typed']},
+    packages=setuptools.find_packages(
+        exclude=[
+            'examples',
+            'test',
+        ]
+    ),
+    package_data={
+        'proxlist': [
+            'py.typed',
+        ]
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
