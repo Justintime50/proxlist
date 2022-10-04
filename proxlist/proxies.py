@@ -1,9 +1,17 @@
-from concurrent.futures import ALL_COMPLETED, ThreadPoolExecutor, wait
-from typing import List, Optional
+from concurrent.futures import (
+    ALL_COMPLETED,
+    ThreadPoolExecutor,
+    wait,
+)
+from typing import (
+    List,
+    Optional,
+)
 
 import requests
 import woodchips
 from bs4 import BeautifulSoup  # type: ignore
+
 
 LOGGER_NAME = 'proxlist'
 NUM_THREADS = 20
