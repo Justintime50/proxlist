@@ -13,11 +13,11 @@ Retrieve proxy servers.
 
 </div>
 
-Finding and storing a list of proxies can be taxing - especially ones that are free and actually work. `proxlist` will validate and return a rotating random proxy to you so you don't need to keep a list of proxies or ensure the list is still valid.
+Finding and storing a list of proxies can be taxing - especially ones that are free and actually work. `proxlist` will validate and return a rotating random proxy so you don't need to keep a list of proxies or ensure the list is still valid.
 
 Proxies are returned in the form of strings (eg: `ip:port`).
 
-These proxies come from all over the world and may not be performant for a production application. For a production application, you should really use a paid proxy service or a self-hosted solution. This package is intended for testing purposes and there are no guarantees about where the data sent through these proxies goes or how it's handled. The list of proxies rotates rapidly and is free and open source - your mileage may vary.
+These proxies come from all over the world and may not be performant for a production application. Instead, you should use a paid proxy service or a self-hosted solution. This package is intended for testing purposes and there are no guarantees about where the data sent through these proxies goes or how it's handled. The list and quality of proxies rotates rapidly - your mileage may vary.
 
 ## Install
 

@@ -22,7 +22,11 @@ def test_random_proxy():
 
 def test_random_proxy_filter_country():
     """Tests that we can retrieve a random proxy when filtering by country."""
-    countries_to_try = ['US', 'CA', 'MX']
+    countries_to_try = [
+        'US',
+        'CA',
+        'MX',
+    ]  # Purposefully sorted by distance from most-likely origin so tests run faster
 
     for country in countries_to_try:
         try:
