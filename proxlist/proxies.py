@@ -62,10 +62,10 @@ def get_proxies(country: Optional[str] = None, google_verified: bool = False) ->
     """Gets a list of proxies from https://www.sslproxies.org by scraping the proxy table."""
     proxy_list = []
 
-    try:
-        website = requests.get('https://www.sslproxies.org')
-    except Exception:
-        raise
+    website = requests.get(
+        url='https://www.sslproxies.org',
+        timeout=3,
+    )
 
     soup = BeautifulSoup(website.text, 'html.parser')
     table = soup.find('table').find('tbody')
