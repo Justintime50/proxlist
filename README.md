@@ -2,7 +2,7 @@
 
 # Proxlist
 
-Retrieve proxy servers.
+Retrieve free, open-source proxy servers.
 
 [![Build Status](https://github.com/Justintime50/proxlist/workflows/build/badge.svg)](https://github.com/Justintime50/proxlist/actions)
 [![Coverage Status](https://coveralls.io/repos/github/Justintime50/proxlist/badge.svg?branch=main)](https://coveralls.io/github/Justintime50/proxlist?branch=main)
