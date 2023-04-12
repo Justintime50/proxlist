@@ -1,5 +1,6 @@
 import setuptools
 
+
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
@@ -11,11 +12,11 @@ REQUIREMENTS = [
 
 DEV_REQUIREMENTS = [
     'bandit == 1.7.*',
-    'black == 22.*',
-    'build == 0.7.*',
-    'flake8 == 4.*',
+    'black == 23.*',
+    'build == 0.10.*',
+    'flake8 == 5.*',
     'isort == 5.*',
-    'mypy == 0.942',
+    'mypy == 1.2.*',
     'pytest == 7.*',
     'pytest-cov == 4.*',
     'twine == 4.*',
