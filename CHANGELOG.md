@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.5.1 (2023-04-12)
+
+- Adds a missing timeout to retrieving the list of proxies
+
 ## v0.5.0 (2022-03-04)
 
 - Adds concurrency to speed up validating proxies. This brings finding a valid proxy from `~1.5 minutes` down to just `~4-20 seconds` depending on the available proxies at the time

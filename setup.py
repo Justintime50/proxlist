@@ -25,7 +25,7 @@ DEV_REQUIREMENTS = [
 
 setuptools.setup(
     name='proxlist',
-    version='0.5.0',
+    version='0.5.1',
     description='Retrieve proxy servers.',
     long_description=long_description,
     long_description_content_type="text/markdown",
