@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.0.0 (2023-07-01)
+
+- Drops support for Python 3.7
+
 ## v0.5.1 (2023-04-12)
 
 - Adds a missing timeout to retrieving the list of proxies

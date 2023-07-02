@@ -26,7 +26,7 @@ These proxies come from all over the world and may not be performant for a produ
 pip3 install proxlist
 
 # Install locally
-make install
+just install
 ```
 
 ## Usage
@@ -64,5 +64,5 @@ print(response.text)
 
 ```bash
 # Get a comprehensive list of development tools
-make help
+just --list
 ```

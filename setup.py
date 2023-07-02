@@ -14,9 +14,9 @@ DEV_REQUIREMENTS = [
     'bandit == 1.7.*',
     'black == 23.*',
     'build == 0.10.*',
-    'flake8 == 5.*',
+    'flake8 == 6.*',
     'isort == 5.*',
-    'mypy == 1.2.*',
+    'mypy == 1.3.*',
     'pytest == 7.*',
     'pytest-cov == 4.*',
     'twine == 4.*',
@@ -25,8 +25,8 @@ DEV_REQUIREMENTS = [
 
 setuptools.setup(
     name='proxlist',
-    version='0.5.1',
-    description='Retrieve proxy servers.',
+    version='1.0.0',
+    description='Retrieve free, open-source proxy servers.',
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='http://github.com/Justintime50/proxlist',
@@ -52,5 +52,5 @@ setuptools.setup(
     extras_require={
         'dev': DEV_REQUIREMENTS,
     },
-    python_requires='>=3.7, <4',
+    python_requires='>=3.8, <4',
 )
