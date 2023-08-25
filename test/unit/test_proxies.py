@@ -15,7 +15,7 @@ def test_random_proxy():
             # If we fail to find a valid proxy, try again a couple more times before failing
             continue
 
-        assert type(random_proxy) == str
+        assert isinstance(random_proxy, str)
         assert ':' in random_proxy
         assert 12 < len(random_proxy) < 25
 
@@ -35,7 +35,7 @@ def test_random_proxy_filter_country():
             # If we fail to find a valid proxy from one country, try another country
             continue
 
-        assert type(random_proxy) == str
+        assert isinstance(random_proxy, str)
         assert ':' in random_proxy
         assert 12 < len(random_proxy) < 25
 
@@ -49,7 +49,7 @@ def test_random_proxy_filter_google_verified():
             # If we fail to find a valid proxy, try again a couple more times before failing
             continue
 
-        assert type(random_proxy) == str
+        assert isinstance(random_proxy, str)
         assert ':' in random_proxy
         assert 12 < len(random_proxy) < 25
 
@@ -97,7 +97,7 @@ def test_list_proxies():
     """Tests that we can retrieve a list of proxies from the free proxy website."""
     proxy_list = proxlist.list_proxies()
 
-    assert type(proxy_list) == list
+    assert isinstance(proxy_list, list)
     assert len(proxy_list) > 50  # The list should typically be ~100 records
 
 

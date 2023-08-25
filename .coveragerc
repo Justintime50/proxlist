@@ -3,3 +3,5 @@ exclude_lines =
     pragma: no cover
     if __name__ == '__main__':
     if response.raw.connection.sock:
+[run]
+omit = proxlist/_version.py
