@@ -1,10 +1,9 @@
 # CHANGELOG
 
-## v1.1.0 (2024-04-11)
+## v1.0.1 (2024-04-11)
 
 - Adds Python 3.12 support
-- Bumps woodchips to v1
-- Bumps test deps
+- Bumps woodchips to v1 to match supported python versions for this package
 
 ## v1.0.0 (2023-07-01)
 
