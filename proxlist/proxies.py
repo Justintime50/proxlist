@@ -68,9 +68,16 @@ def get_proxies(country: Optional[str] = None, google_verified: bool = False) ->
     )
 
     soup = BeautifulSoup(website.text, 'html.parser')
-    table = soup.find('table').find('tbody')
+    tbody = None
+    if soup:
+        table = soup.find('table')
+        if table:
+            tbody = table.find('tbody')
 
-    for table_entry in table.find_all('tr'):
+    if tbody is None:
+        raise Exception('Could not find proxy table content!')
+
+    for table_entry in tbody.find_all('tr'):  # type:ignore
         entry_elements = [td.text.strip() for td in table_entry.find_all('td')]
         ip_address = entry_elements[0]
         port = entry_elements[1]
@@ -114,7 +121,7 @@ def validate_proxy(proxy: str, timeout: float) -> Optional[str]:
 
     try:
         with requests.get(url, proxies=proxies, headers=headers, timeout=timeout, stream=True) as response:
-            if response.raw.connection.sock:
+            if response.raw.connection and response.raw.connection.sock:
                 if response.raw.connection.sock.getpeername()[0] == proxies['http'].split(':')[1][2:]:
                     valid_proxy = proxy
                     logger.debug(f'Found valid proxy: {proxy}')

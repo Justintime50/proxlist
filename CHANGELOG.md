@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v1.1.0 (2024-10-10)
+
+- Adds error handling when BeautifulSoup cannot find the table of proxies
+- Python 3.13 compatibility
+
 ## v1.0.1 (2024-04-11)
 
 - Adds Python 3.12 support

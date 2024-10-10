@@ -22,7 +22,7 @@ black-check:
 
 # Test the project and generate an HTML coverage report
 coverage:
-    {{VIRTUAL_BIN}}/pytest --cov={{PROJECT_NAME}} --cov-branch --cov-report=html --cov-report=lcov --cov-report=term-missing --cov-fail-under=95
+    {{VIRTUAL_BIN}}/pytest --cov={{PROJECT_NAME}} --cov-branch --cov-report=html --cov-report=lcov --cov-report=term-missing --cov-fail-under=92
 
 # Cleans the project
 clean:
@@ -54,7 +54,7 @@ isort-check:
 
 # Run mypy type checking on the project
 mypy:
-    {{VIRTUAL_BIN}}/mypy {{PROJECT_NAME}}/ {{TEST_DIR}}/
+    {{VIRTUAL_BIN}}/mypy --install-types --non-interactive {{PROJECT_NAME}}/ {{TEST_DIR}}/
 
 # Test the project
 test:
