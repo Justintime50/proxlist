@@ -21,12 +21,12 @@ REQUIREMENTS = [
 ]
 
 DEV_REQUIREMENTS = [
-    'bandit == 1.7.*',
-    'black == 24.*',
-    'build == 1.1.*',
+    'bandit == 1.9.*',
+    'black == 25.*',
+    'build == 1.3.*',
     'flake8 == 7.*',
-    'isort == 5.*',
-    'mypy == 1.11.*',
+    'isort == 7.*',
+    'mypy == 1.18.*',
     'pytest == 8.*',
     'pytest-cov == 4.*',
 ]

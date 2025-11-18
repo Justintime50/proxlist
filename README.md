@@ -5,7 +5,7 @@
 Retrieve free, open-source proxy servers.
 
 [![Build Status](https://github.com/Justintime50/proxlist/workflows/build/badge.svg)](https://github.com/Justintime50/proxlist/actions)
-[![Coverage Status](https://coveralls.io/repos/github/Justintime50/proxlist/badge.svg?branch=main)](https://coveralls.io/github/Justintime50/proxlist?branch=main)
+[![Coverage Status](https://img.shields.io/codecov/c/github/justintime50/proxlist)](https://app.codecov.io/github/Justintime50/proxlist)
 [![PyPi](https://img.shields.io/pypi/v/proxlist)](https://pypi.org/project/proxlist)
 [![Licence](https://img.shields.io/github/license/Justintime50/proxlist)](LICENSE)
 

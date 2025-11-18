@@ -13,9 +13,9 @@ import woodchips
 from bs4 import BeautifulSoup  # type: ignore
 
 
-LOGGER_NAME = 'proxlist'
+LOGGER_NAME = "proxlist"
 NUM_THREADS = 20
-LOG_LEVEL = 'NOTSET'  # Intentionally hide all loggers. During development, set to `DEBUG`
+LOG_LEVEL = "NOTSET"  # Intentionally hide all loggers. During development, set to `DEBUG`
 
 
 def random_proxy(country: Optional[str] = None, google_verified: bool = False) -> Optional[str]:
@@ -48,7 +48,7 @@ def random_proxy(country: Optional[str] = None, google_verified: bool = False) -
     if valid_proxy_list:
         return valid_proxy_list[0]
     else:
-        raise Exception('No working proxies were found at this time, please try again later.')
+        raise Exception("No working proxies were found at this time, please try again later.")
 
 
 def list_proxies(country: Optional[str] = None, google_verified: bool = False) -> List[str]:
@@ -63,28 +63,28 @@ def get_proxies(country: Optional[str] = None, google_verified: bool = False) ->
     proxy_list = []
 
     website = requests.get(
-        url='https://www.sslproxies.org',
+        url="https://www.sslproxies.org",
         timeout=3,
     )
 
-    soup = BeautifulSoup(website.text, 'html.parser')
+    soup = BeautifulSoup(website.text, "html.parser")
     tbody = None
     if soup:
-        table = soup.find('table')
+        table = soup.find("table")
         if table:
-            tbody = table.find('tbody')
+            tbody = table.find("tbody")
 
     if tbody is None:
-        raise Exception('Could not find proxy table content!')
+        raise Exception("Could not find proxy table content!")
 
-    for table_entry in tbody.find_all('tr'):  # type:ignore
-        entry_elements = [td.text.strip() for td in table_entry.find_all('td')]
+    for table_entry in tbody.find_all("tr"):  # type:ignore
+        entry_elements = [td.text.strip() for td in table_entry.find_all("td")]
         ip_address = entry_elements[0]
         port = entry_elements[1]
         country_code = entry_elements[2]  # Two digit ISO country code
-        is_google_verified = True if entry_elements[5] == 'yes' else False
+        is_google_verified = True if entry_elements[5] == "yes" else False
 
-        proxy = f'{ip_address}:{port}'
+        proxy = f"{ip_address}:{port}"
 
         # If the user specified filters, respect them here
         if (country is not None and country_code == country) and (
@@ -99,7 +99,7 @@ def get_proxies(country: Optional[str] = None, google_verified: bool = False) ->
             proxy_list.append(proxy)
 
     if len(proxy_list) == 0:
-        raise ValueError('There are no proxies with your specified criteria at this time. Please try again later.')
+        raise ValueError("There are no proxies with your specified criteria at this time. Please try again later.")
 
     return proxy_list
 
@@ -110,25 +110,25 @@ def validate_proxy(proxy: str, timeout: float) -> Optional[str]:
     """
     logger = woodchips.get(LOGGER_NAME)
 
-    url = 'https://google.com'
+    url = "https://google.com"
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0',
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0",
     }
     proxies = {
-        'http': f'http://{proxy}',
-        'https': f'http://{proxy}',
+        "http": f"http://{proxy}",
+        "https": f"http://{proxy}",
     }
 
     try:
         with requests.get(url, proxies=proxies, headers=headers, timeout=timeout, stream=True) as response:
             if response.raw.connection and response.raw.connection.sock:
-                if response.raw.connection.sock.getpeername()[0] == proxies['http'].split(':')[1][2:]:
+                if response.raw.connection.sock.getpeername()[0] == proxies["http"].split(":")[1][2:]:
                     valid_proxy = proxy
-                    logger.debug(f'Found valid proxy: {proxy}')
+                    logger.debug(f"Found valid proxy: {proxy}")
     except Exception:
         # Couldn't connect to proxy, discard
         valid_proxy = None
-        logger.debug(f'Couldn\'t connect to proxy: {proxy}')
+        logger.debug(f"Couldn't connect to proxy: {proxy}")
 
     return valid_proxy
 
@@ -144,5 +144,5 @@ def _setup_logger():
     logger.log_to_console()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(random_proxy())

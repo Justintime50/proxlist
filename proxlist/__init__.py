@@ -7,8 +7,8 @@ from proxlist.proxies import (
 
 
 __all__ = [
-    'get_proxies',
-    'list_proxies',
-    'random_proxy',
-    'validate_proxy',
+    "get_proxies",
+    "list_proxies",
+    "random_proxy",
+    "validate_proxy",
 ]
