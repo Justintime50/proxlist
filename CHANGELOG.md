@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.0 (2025-11-18)
+
+- Drops support for Python 3.8 and 3.9
+- Bumps dependencies
+
 ## v1.1.0 (2024-10-10)
 
 - Adds error handling when BeautifulSoup cannot find the table of proxies
